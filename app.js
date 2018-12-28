@@ -3,7 +3,6 @@ const greenlock = require('greenlock-express');
 const https = require('https');
 const http = require('http');
 const redirect = require('redirect-https');
-const io = require('socket.io');
 
 const ssl = greenlock.create({
     server: 'https://acme-v01.api.letsencrypt.org/directory',
