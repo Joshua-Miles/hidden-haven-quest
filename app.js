@@ -14,7 +14,7 @@ app.use(express.static('public'))
 app.use('/deploy', function(req, res){
     console.log('~DEPLOYING~')
     const exec = require('child-process-promise').exec
-    exec('git pull origin automated-deployment')
+    exec('git pull origin master')
     res.send(200)
 })
 
