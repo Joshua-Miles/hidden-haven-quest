@@ -8,8 +8,7 @@ const app = express()
 const ssl = greenlock.create({
     server: 'https://acme-v01.api.letsencrypt.org/directory',
     email: 'admin@triframe.io',
-    agreeTos: true,
-    approvedDomains:[ "hidden-haven-quest.triframe.cloud" ]
+    agreeTos: true
 })
 
 const httpServer = http.createServer(ssl.middleware(redirect()));
