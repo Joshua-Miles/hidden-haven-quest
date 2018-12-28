@@ -24,10 +24,7 @@ const server = greenlock.create({
     // ex: /home/foouser/acme/etc
   , configDir: '~/.config/acme/'
   
-  , app: require('express')().use('/', function (req, res) {
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      res.end('Hello, World!!');
-    })
+  , app: app
   
     // Get notified of important updates and help me make greenlock better
   , communityMember: false
@@ -35,8 +32,6 @@ const server = greenlock.create({
   , debug: true
 }).listen(80, 443);
 
-// const httpServer = http.createServer(ssl.middleware(redirect()));
-// const httpsServer = https.createServer(ssl.httpsOptions, ssl.middleware(app));
 
 const io = require('socket.io')(server);
 
@@ -46,19 +41,11 @@ io.on('connection', function(socket){
 
 })
 
-// app.use(express.static('public'))
+app.use(express.static('public'))
 
-// app.use('/deploy', function(req, res){
-//     console.log('~DEPLOYING~')
-//     const exec = require('child-process-promise').exec
-//     exec('git pull origin master')
-//     res.send(200)
-// })
-
-// httpServer.listen(80, function () {
-//     console.log(`Listening on 80`)
-// });
-
-// httpsServer.listen(443, () => {
-//     console.log(`Listening on 443`)
-// })
+app.use('/deploy', function(req, res){
+    console.log('~DEPLOYING~')
+    const exec = require('child-process-promise').exec
+    exec('git pull origin master')
+    res.send(200)
+})
