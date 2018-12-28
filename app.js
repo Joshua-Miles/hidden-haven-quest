@@ -6,7 +6,6 @@ const redirect = require('redirect-https');
 const app = express()
 
 const ssl = greenlock.create({
-    server: 'https://acme-v01.api.letsencrypt.org/directory',
     email: 'admin@triframe.io',
     configDir: '~/.config/acme/',
     agreeTos: true
