@@ -1,11 +1,8 @@
 const express = require('express');
 const greenlock = require('greenlock-express');
-const https = require('https');
-const http = require('http');
-const redirect = require('redirect-https');
 const app = express()
 
-const ssl = greenlock.create({
+const server = greenlock.create({
     // Let's Encrypt v2 is ACME draft 11
   version: 'draft-11'
 
@@ -41,13 +38,13 @@ const ssl = greenlock.create({
 // const httpServer = http.createServer(ssl.middleware(redirect()));
 // const httpsServer = https.createServer(ssl.httpsOptions, ssl.middleware(app));
 
-// const io = require('socket.io')(httpsServer);
+const io = require('socket.io')(server);
 
-// io.on('connection', function(socket){
+io.on('connection', function(socket){
 
-//     console.log('socket connected')
+    console.log('socket connected')
 
-// })
+})
 
 // app.use(express.static('public'))
 
