@@ -26,7 +26,7 @@ const server = greenlock.create({
   
   , app: require('express')().use('/', function (req, res) {
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      res.end('Hello, World!\n\n💚 🔒.js');
+      res.end('Hello, World!!');
     })
   
     // Get notified of important updates and help me make greenlock better
