@@ -1,0 +1,31 @@
+<html>
+    <body>
+        <canvas ></canvas>
+        <script src="jsQR.js"></script>
+        <script>
+            (async function(){
+                var mediaStream = await navigator.mediaDevices.getUserMedia({video:true});
+                let search = async function(){
+                    const track = mediaStream.getVideoTracks()[0];
+                    let imageCapture = new ImageCapture(track);
+                    let bitmap = await imageCapture.grabFrame()
+                    let width = bitmap.width
+                    let height = bitmap.height
+                    const canvas = document.querySelector("canvas");
+                    const ctx = canvas.getContext("2d");
+                    canvas.width =  width;
+                    canvas.height = height;
+                    ctx.drawImage(bitmap, 0, 0, width, height);
+                    let imageData = ctx.getImageData(0, 0, width, height);
+                    let code = jsQR(imageData.data, width, height)
+                    if(!code) setTimeout(search, 10)
+                    else {
+                        alert(code.data)
+                    }
+                }
+                search()
+            })()
+        </script>
+    </body>
+    
+</html>
