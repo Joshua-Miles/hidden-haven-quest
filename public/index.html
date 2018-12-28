@@ -3,7 +3,7 @@
         <canvas ></canvas>
         <script src="jsQR.js"></script>
         <script>
-            (async function(){
+            (async function(){ 
                 var mediaStream = await navigator.mediaDevices.getUserMedia({video:true});
                 let search = async function(){
                     const track = mediaStream.getVideoTracks()[0];
