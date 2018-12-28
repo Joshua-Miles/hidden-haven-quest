@@ -12,7 +12,7 @@ const ssl = greenlock.create({
 })
 
 const httpServer = http.createServer(ssl.middleware(redirect()));
-const httpsServer = https.createServer(ssl.httpsOptions, ssl.middleware(rest));
+const httpsServer = https.createServer(ssl.httpsOptions, ssl.middleware(app));
 
 const io = require('socket.io')(httpsServer);
 
