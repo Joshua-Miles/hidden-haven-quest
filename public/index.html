@@ -202,8 +202,10 @@ window.ImageCapture = ImageCapture;
                         let search = async function(){
                             console.log(video, video.videoWidth, video.videoHeight)
                             ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight)
-                            //let imageData = ctx.getImageData(0, 0, video.videoWidth, video.videoHeigth);
-                            // let code = jsQR(imageData.data, width, height)
+                            canvas.width = video.videoWidth
+                            canvas.height = video.videoHeight
+                            let imageData = ctx.getImageData(0, 0, video.videoWidth, video.videoHeigth);
+                            let code = jsQR(imageData.data, width, height)
                             let code = false
                             if(!code) setTimeout(search, 1000)
                             else {
