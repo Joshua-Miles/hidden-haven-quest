@@ -2,12 +2,13 @@ const express = require('express');
 const greenlock = require('greenlock-express');
 const app = express()
 
-function gemethods(obj) {
+function getMethods($class) {
+  var prototype = $class.prototype
   var props = [];
 
   do {
-      props = props.concat(Object.getOwnPropertyNames(obj));
-  } while (obj = Object.getPrototypeOf(obj) && object.constructor != Object);
+      props = props.concat(Object.getOwnPropertyNames(prototype));
+  } while (prototype = prototype.__proto__ && prototype != Object.prototype);
 
   return props.sort().filter(function(e, i, arr) { 
      if (e!=arr[i+1] && typeof obj[e] == 'function') return true;
@@ -56,7 +57,7 @@ io.on('connection', function(socket){
       let [name] = file.split('.')
       let Controller = require("./controllers/" + file);
       console.log(Controller.prototype)
-      controllers[name] = Object.getOwnPropertyNames(Controller.prototype)
+      controllers[name] = getMethods(Controller.prototype)
     });
     respond(controllers)
   })

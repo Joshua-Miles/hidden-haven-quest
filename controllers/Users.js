@@ -1,4 +1,10 @@
-module.exports = class Users {
+class Controller {
+    inheritedMethodOne(){
+        
+    }
+}
+
+module.exports = class Users extends Controller {
 
     methodOne(){
 
@@ -6,6 +12,6 @@ module.exports = class Users {
 
 
     methodTwo(){
-        
+
     }
 }
