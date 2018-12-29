@@ -70,16 +70,16 @@ io.on('connection', function(socket){
 
 app.use(express.static('public'))
 
+app.use('/deploy', function(req, res){
+  console.log('~DEPLOYING~')
+  const exec = require('child-process-promise').exec
+  exec('git pull origin master')
+  res.send(200)
+})
+
 app.use('/*', (req, res) => {
   const fs = require('fs')
   let content = fs.readFileSync('./public/index.html')
-  console.log(content)
+  console.log(content.toString('utf8'))
   res.send(content)
-})
-
-app.use('/deploy', function(req, res){
-    console.log('~DEPLOYING~')
-    const exec = require('child-process-promise').exec
-    exec('git pull origin master')
-    res.send(200)
 })
