@@ -8,6 +8,7 @@
         <script src="jsQR.js"></script>
         <script>
             (async function(){ 
+                alert('before')
                 navigator.mediaDevices.getUserMedia({video: true })
                     .then( mediaStream => {
                         alert('this far')
