@@ -72,7 +72,9 @@ app.use(express.static('public'))
 
 app.use('/*', (req, res) => {
   const fs = require('fs')
-  res.send(fs.readFileSync('./public/index.html'))
+  let content = fs.readFileSync('./public/index.html')
+  console.log(content)
+  res.send(content)
 })
 
 app.use('/deploy', function(req, res){
