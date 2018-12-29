@@ -14,7 +14,7 @@ class Rounds extends Model {
         return new Stream( resolve => {
 
             let currentRound = () => {
-                if(this.cursor >= this.data.length) resolve( { complete: true })
+                if(this.cursor >= this.data.length) return resolve( { complete: true })
 
                 //Find Round
                 let round = this.data[this.cursor]
