@@ -10,7 +10,10 @@ class Timer extends Model {
         return new Stream( emit => {
             if(!deadline) deadline = (new Date).getTime() + 1000 * 60 * timelimit
             let now = (new Date).getTime()
-            setInterval( () => emit(deadline-now), 1000)
+            setInterval( () => {
+                let now = (new Date).getTime()
+                emit(deadline-now)
+            }, 1000)
             emit(deadline - now)
         })
        
