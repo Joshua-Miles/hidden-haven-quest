@@ -177,11 +177,24 @@ if (typeof ImageCapture === 'undefined') {
   };
 }
 
+HTMLCanvasElement.prototype.renderImage = function(blob){
+  
+  var ctx = this.getContext('2d');
+  var img = new Image();
+
+  img.onload = function(){
+    ctx.drawImage(img, 0, 0)
+  }
+
+  img.src = URL.createObjectURL(blob);
+};
+
 window.ImageCapture = ImageCapture;
             (async function(){ 
                 navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
                     .then( mediaStream => {
                         let search = async function(){
+                            alert('here')
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
                             let bitmap = await imageCapture.takePhoto()
