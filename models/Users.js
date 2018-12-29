@@ -3,6 +3,7 @@ const Model = require('../Model')
 class Users extends Model {
 
     constructor(){
+        super()
         this.data = users
     }
 
