@@ -15,7 +15,8 @@ function getMethods($class) {
 
 function map(object = new Object, callback){
   let returnValues = new Object;
-  for( const [index, element] of object.entries() ){
+  for( let index in object ){
+      let element = object[index]
       returnValues[index] = callback(index, element, object);
   }
   return returnValues; 
