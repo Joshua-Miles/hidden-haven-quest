@@ -44,7 +44,7 @@ io.on('connection', function(socket){
       let [name] = file.split('.')
       let Controller = require("./controllers/" + file);
       console.log(Controller.prototype)
-      controllers[name] = Object.keys(Controller.prototype)
+      controllers[name] = Object.getOwnPropertyNames(Controller.prototype)
     });
     respond(controllers)
   })
