@@ -57,7 +57,7 @@ class Rounds extends Model {
             users.forEach( user => {
                 console.log(user.number)
                 client.messages.create({
-                    to: '+7138854378', //user.number,
+                    to: '+17138854378', //user.number,
                     from: '+12819496383',
                     body: `Hi ${user.name}, come play Hidden Haven Quest: https://hidden-haven-quest.triframe.cloud/portal/${user.id}`
                 });
