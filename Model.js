@@ -8,8 +8,8 @@ class Model {
             const normalizedPath = require("path").join(__dirname, "models");
             require("fs").readdirSync(normalizedPath).forEach(function(file) {
                 let [name] = file.split('.')
-                let Model = require("./models/" + file);
-                cache[name] = Model[name] =  new Model
+                let ModelClass = require("./models/" + file);
+                cache[name] = Model[name] =  new ModelClass
             });
         }
         return cache
