@@ -17,7 +17,10 @@ class Model extends EventEmitter{
     }
 
     all(){
-        return this.data
+        return new Stream( resolve => {
+            this.on(`updated`, document => resolve(this.data))
+            resolve(this.data)
+        })
     }
 
     find(id){
@@ -27,6 +30,7 @@ class Model extends EventEmitter{
     update(id, values){
         let document = this.find(id)
         Object.assign(document, values)
+        this.emit(`updated`)
         this.emit(`updated-${id}`, document)
         return document
     }
