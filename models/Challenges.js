@@ -1,5 +1,4 @@
 const Model = require('../Model')
-const Rounds = require('./Rounds')
 const code = Symbol()
 
 class Challenges extends Model {

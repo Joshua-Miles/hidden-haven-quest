@@ -1,6 +1,6 @@
 const Model = require('../Model')
 let Challenges = require('./Challenges.js')
-console.log(Challenges)
+console.log(Model)
 Challenges = new Challenges
 class Rounds extends Model {
 
