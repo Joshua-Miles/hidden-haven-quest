@@ -8,8 +8,6 @@
         <script src="jsQR.js"></script>
         <script>
             (async function(){ 
-                alert('this?!')
-
                 navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
                     .then( mediaStream => {
                         alert('this far')
@@ -38,7 +36,9 @@
                     }
                     search()
                 })
-                .catch(alert)
+                .catch( error => {
+                    alert('in here?')
+                })
                 
             })()
         </script>
