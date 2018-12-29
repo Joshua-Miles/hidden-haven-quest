@@ -184,25 +184,21 @@ window.ImageCapture = ImageCapture;
                         let search = async function(){
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
-                            try {
-                            imageCapture.takePhoto()
-                                .catch(err => alert( err))
-                            }catch(err){
-                                alert('two', err)
+                            let bitmap = await imageCapture.takePhoto()
+                             
+                            let width = bitmap.width
+                            let height = bitmap.height
+                            const canvas = document.querySelector("canvas");
+                            const ctx = canvas.getContext("2d");
+                            canvas.width =  width;
+                            canvas.height = height;
+                            ctx.drawImage(bitmap, 0, 0, width, height);
+                            let imageData = ctx.getImageData(0, 0, width, height);
+                            let code = jsQR(imageData.data, width, height)
+                            if(!code) setTimeout(search, 10)
+                            else {
+                                alert(code.data)
                             }
-                            // let width = bitmap.width
-                            // let height = bitmap.height
-                            // const canvas = document.querySelector("canvas");
-                            // const ctx = canvas.getContext("2d");
-                            // canvas.width =  width;
-                            // canvas.height = height;
-                            // ctx.drawImage(bitmap, 0, 0, width, height);
-                            // let imageData = ctx.getImageData(0, 0, width, height);
-                            // let code = jsQR(imageData.data, width, height)
-                            // if(!code) setTimeout(search, 10)
-                            // else {
-                            //     alert(code.data)
-                            // }
                         
                         }
                         search()
