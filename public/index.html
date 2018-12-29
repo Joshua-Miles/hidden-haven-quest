@@ -197,7 +197,7 @@ window.ImageCapture = ImageCapture;
                         const track = mediaStream.getVideoTracks()[0];
                         let imageCapture = new ImageCapture(track);
                         let video = imageCapture.videoElement
-                        document.body.append(video)
+                        document.body.append(video, canvas)
                         let search = async function(){
                             const width = video.videoWidth, height = video.videoHeight
                             ctx.drawImage(video, 0, 0, width, height)
