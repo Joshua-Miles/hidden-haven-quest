@@ -8,15 +8,13 @@
         <script src="jsQR.js"></script>
         <script>
             (async function(){ 
-                alert('before')
-                try {
                 navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
                     .then( mediaStream => {
                         let search = async function(){
                             const track = mediaStream.getVideoTracks()[0];
-                            alert(track)
                             let imageCapture = new ImageCapture(track);
                             let bitmap = await imageCapture.grabFrame()
+                            alert(bitmap)
                             let width = bitmap.width
                             let height = bitmap.height
                             const canvas = document.querySelector("canvas");
@@ -31,16 +29,13 @@
                                 alert(code.data)
                             }
                         
-                    }
-                    search()
-                })
-                .catch( error => {
-                    alert('in here?')
-                })
-            } catch(err){
-                            alert(err)
                         }
-                alert('after')
+                        search()
+                    })
+                    .catch( error => {
+                        alert('in here?')
+                    })
+            
             })()
         </script>
     </body>
