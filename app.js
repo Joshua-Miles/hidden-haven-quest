@@ -41,8 +41,9 @@ io.on('connection', function(socket){
     const controllers = new Object
     const normalizedPath = require("path").join(__dirname, "controllers");
     require("fs").readdirSync(normalizedPath).forEach(function(file) {
-      let Controller = require("./routes/" + file);
-      controllers[file] = Object.keys(Controller.prototype)
+      let [name] = file.split('.')
+      let Controller = require("./controllers/" + file);
+      controllers[name] = Object.keys(Controller.prototype)
     });
     respond(controllers)
   })
