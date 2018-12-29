@@ -44,7 +44,7 @@ class Rounds extends Model {
         }) 
     }
 
-    beginGame(){
+    async beginGame(){
         if(!begun){
             begun = true
             var twilio = require('twilio');
@@ -53,17 +53,14 @@ class Rounds extends Model {
             var client = new twilio('ACdfc49436c4d99c4f38cbdbc067f20b51', '47c58db4b05382a7e9b45d39c0a69627');
 
             // Send the text message.
-            Model.Users.all()
-                .then(users => {
-                    users.forEach( user => {
-                        client.messages.create({
-                            to: '+17138854378', //user.number,
-                            from: '+12819496383',
-                            body: `https://hidden-haven-quest.triframe.cloud/portal/${user.id}`
-                        });
-                    })
-                })
-
+            let users = await Model.Users.all()
+            users.forEach( user => {
+                client.messages.create({
+                    to: '+17138854378', //user.number,
+                    from: '+12819496383',
+                    body: `https://hidden-haven-quest.triframe.cloud/portal/${user.id}`
+                });
+            })
         } 
     }
 
