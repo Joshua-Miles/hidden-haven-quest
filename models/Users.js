@@ -1,5 +1,16 @@
 const Model = require('../Model')
 
+class Users extends Model {
+
+    constructor(){
+        this.data = users
+    }
+
+    
+}
+
+module.exports = Users;
+
 const users = [
     {
         id: 1,
@@ -32,17 +43,3 @@ const users = [
         image: 'https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/37179064_1046732145500485_116297719986782208_n.jpg?_nc_cat=109&_nc_ht=scontent-dfw5-1.xx&oh=fbd96896b3989e698318621408ef527c&oe=5C8F03E6'
     }
 ]
-
-class Users extends Model {
-
-    all(){
-        return users
-    }
-
-
-    methodTwo(){
-
-    }
-}
-
-module.exports = Users;

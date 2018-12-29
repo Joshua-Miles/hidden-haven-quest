@@ -1,6 +1,10 @@
 class Model {
-    inheritedMethodOne(){
-        return 'Hello World'
+    all(){
+        return this.data
+    }
+
+    find(id){
+        return this.data.find( document => document.id == id)
     }
 }
 
