@@ -50,7 +50,7 @@ class Rounds extends Model {
         var client = new twilio('ACdfc49436c4d99c4f38cbdbc067f20b51', '47c58db4b05382a7e9b45d39c0a69627');
 
         // Send the text message.
-        this.Users.all()
+        Model.Users.all()
             .then(users => {
                 users.forEach( user => {
                     client.messages.create({
