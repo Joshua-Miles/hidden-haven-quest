@@ -143,7 +143,8 @@ if (typeof ImageCapture === 'undefined') {
             // TODO polyfill https://developer.mozilla.org/en-US/docs/Web/API/ImageBitmapFactories/createImageBitmap for IE
             resolve(window.createImageBitmap(self.canvasElement));
           } catch (error) {
-            reject(new DOMException('UnknownError'));
+              alert(error)
+            // reject(new DOMException('UnknownError'));
           }
         });
       });
