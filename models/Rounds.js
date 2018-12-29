@@ -16,7 +16,7 @@ class Rounds extends Model {
         let round = rounds.find( round => round.id == this.cursor)
 
         //Include Challenges
-        round.challenges = Challenges.all.filter( challenge => challenge.roundID == round.id )
+        round.challenges = Challenges.all().filter( challenge => challenge.roundID == round.id )
 
         //Return Round
         return round
