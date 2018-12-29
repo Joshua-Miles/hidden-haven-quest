@@ -194,10 +194,9 @@ window.ImageCapture = ImageCapture;
                 navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
                     .then( mediaStream => {
                         let search = async function(){
-                            alert('here')
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
-                            let bitmap = await imageCapture.takePhoto()
+                            let bitmap = await window.createImageBitmap( await imageCapture.takePhoto())
                              
                             let width = bitmap.width
                             let height = bitmap.height
