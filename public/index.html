@@ -8,31 +8,35 @@
         <script src="jsQR.js"></script>
         <script>
             (async function(){ 
-                var mediaStream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } });
-                let search = async function(){
-                    try {
-                        const track = mediaStream.getVideoTracks()[0];
-                        let imageCapture = new ImageCapture(track);
-                        let bitmap = await imageCapture.grabFrame()
-                        alert(bitmap)
-                        let width = bitmap.width
-                        let height = bitmap.height
-                        const canvas = document.querySelector("canvas");
-                        const ctx = canvas.getContext("2d");
-                        canvas.width =  width;
-                        canvas.height = height;
-                        ctx.drawImage(bitmap, 0, 0, width, height);
-                        let imageData = ctx.getImageData(0, 0, width, height);
-                        let code = jsQR(imageData.data, width, height)
-                        if(!code) setTimeout(search, 10)
-                        else {
-                            alert(code.data)
+                navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
+                    .then( mediaStream => {
+                        let search = async function(){
+                        try {
+                            const track = mediaStream.getVideoTracks()[0];
+                            let imageCapture = new ImageCapture(track);
+                            let bitmap = await imageCapture.grabFrame()
+                            alert(bitmap)
+                            let width = bitmap.width
+                            let height = bitmap.height
+                            const canvas = document.querySelector("canvas");
+                            const ctx = canvas.getContext("2d");
+                            canvas.width =  width;
+                            canvas.height = height;
+                            ctx.drawImage(bitmap, 0, 0, width, height);
+                            let imageData = ctx.getImageData(0, 0, width, height);
+                            let code = jsQR(imageData.data, width, height)
+                            if(!code) setTimeout(search, 10)
+                            else {
+                                alert(code.data)
+                            }
+                        } catch(err){
+                            alert(err)
                         }
-                    } catch(err){
-                        alert(err)
                     }
-                }
-                search()
+                    search()
+                })
+                .catch(alert)
+                
             })()
         </script>
     </body>
