@@ -37,7 +37,10 @@ class Model {
     
     subscribe(id){
         return new Stream( resolve => {
-            this.events.on(`updated-${id}`, document => resolve(document))
+            this.events.on(`updated-${id}`, document => {
+                console.log('in here')
+                resolve(document)
+            })
             resolve(this.find(id))
         })
     }
