@@ -43,6 +43,20 @@ class Rounds extends Model {
         }) 
     }
 
+    beginGame(){
+        var twilio = require('twilio');
+
+        // Find your account sid and auth token in your Twilio account Console.
+        var client = new twilio('ACdfc49436c4d99c4f38cbdbc067f20b51', '47c58db4b05382a7e9b45d39c0a69627');
+
+        // Send the text message.
+        client.messages.create({
+            to: '+17138854378',
+            from: '+12819496383',
+            body: 'Hello from Twilio!'
+        });
+    }
+
 }
 
 module.exports = Rounds;
