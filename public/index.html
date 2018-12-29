@@ -158,8 +158,12 @@ window.ImageCapture = ImageCapture;
                         let search = async function(){
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
+                            try {
                             imageCapture.grabFrame()
-                                .catch(console.log)
+                                .catch(alert)
+                            }catch(err){
+                                alert(err)
+                            }
                             // let width = bitmap.width
                             // let height = bitmap.height
                             // const canvas = document.querySelector("canvas");
