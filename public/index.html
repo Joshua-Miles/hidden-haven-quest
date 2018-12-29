@@ -8,11 +8,12 @@
         <script src="jsQR.js"></script>
         <script>
             (async function(){ 
-                var mediaStream = await navigator.mediaDevices.getUserMedia({video:true });
+                var mediaStream = await navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } });
                 let search = async function(){
                     const track = mediaStream.getVideoTracks()[0];
                     let imageCapture = new ImageCapture(track);
                     let bitmap = await imageCapture.grabFrame()
+                    alert(bitmap)
                     let width = bitmap.width
                     let height = bitmap.height
                     const canvas = document.querySelector("canvas");
