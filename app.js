@@ -57,7 +57,7 @@ io.on('connection', function(socket){
       let [name] = file.split('.')
       let Controller = require("./controllers/" + file);
       console.log(Controller.prototype)
-      controllers[name] = getMethods(Controller.prototype)
+      controllers[name] = getMethods(Controller)
     });
     respond(controllers)
   })
