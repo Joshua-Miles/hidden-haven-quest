@@ -5,6 +5,7 @@ class Rounds extends Model {
 
 
     constructor(){
+        super()
         this.data = rounds
         this.cursor = 1
     }

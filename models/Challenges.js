@@ -5,6 +5,7 @@ const code = Symbol()
 class Challenges extends Model {
 
     constructor(){
+        super()
         this.data = challenges
     }
 
