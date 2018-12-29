@@ -151,7 +151,9 @@ if (typeof ImageCapture === 'undefined') {
             self.canvasElement.height = self.videoElement.videoHeight;
             self.canvas2dContext.drawImage(self.videoElement, 0, 0);
             // TODO polyfill https://developer.mozilla.org/en-US/docs/Web/API/ImageBitmapFactories/createImageBitmap for IE
-            resolve(window.createImageBitmap(self.canvasElement));
+            let frame = window.createImageBitmap(self.canvasElement)
+            alert(frame)
+            resolve(frame);
           } catch (error) {
               alert(error)
             // reject(new DOMException('UnknownError'));
