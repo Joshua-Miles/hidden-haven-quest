@@ -185,7 +185,7 @@ window.ImageCapture = ImageCapture;
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
                             try {
-                            imageCapture.grabFrame()
+                            imageCapture.takePhoto()
                                 .catch(err => alert( err))
                             }catch(err){
                                 alert('two', err)
