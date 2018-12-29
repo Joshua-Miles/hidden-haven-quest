@@ -64,7 +64,7 @@ io.on('connection', function(socket){
         })
       })
     })
-    respond({ models: map(Model.all, getMethods )})
+    respond({ models: map(Model.all, (name, model) => getMethods(model) )})
   })
 })
 
