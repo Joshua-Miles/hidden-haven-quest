@@ -201,6 +201,7 @@ window.ImageCapture = ImageCapture;
                         document.body.append(video)
                         let search = async function(){
                             console.log(video, video.videoWidth, video.videoHeight)
+                            if(!video.videoWidth) return setTimeout(search, 1000)
                             ctx.drawImage(video, video.videoWidth, video.videoHeight)
                             canvas.width = video.videoWidth
                             canvas.height = video.videoHeight
