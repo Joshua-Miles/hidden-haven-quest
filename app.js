@@ -43,7 +43,7 @@ io.on('connection', function(socket){
     require("fs").readdirSync(normalizedPath).forEach(function(file) {
       let [name] = file.split('.')
       let Controller = require("./controllers/" + file);
-      console.log(Controller)
+      console.log(Controller.prototype)
       controllers[name] = Object.keys(Controller.prototype)
     });
     respond(controllers)
