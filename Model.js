@@ -27,6 +27,13 @@ class Model {
     find(id){
         return this.data.find( document => document.id == id)
     }
+
+    update(id, values){
+        let document = this.find(id)
+        Object.assign(document, values)
+        this.events.emit(`updated-${id}`, document)
+        return document
+    }
     
     subscribe(id){
         return new Stream( resolve => {
