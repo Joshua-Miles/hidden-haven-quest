@@ -70,6 +70,11 @@ io.on('connection', function(socket){
 
 app.use(express.static('public'))
 
+app.use('/*', (req, res) => {
+  const fs = require('fs')
+  res.send(fs.readFileSync('./public/index.html'))
+})
+
 app.use('/deploy', function(req, res){
     console.log('~DEPLOYING~')
     const exec = require('child-process-promise').exec
