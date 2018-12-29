@@ -1,5 +1,5 @@
 const Model = require('../Model')
-const Challenges = require('./Challenges')
+const Challenges = new require('./Challenges')
 
 class Rounds extends Model {
 
