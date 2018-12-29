@@ -165,17 +165,15 @@ window.ImageCapture = ImageCapture;
                         let search = async function(){
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
-                            canvas.width = 100
-                            canvas.height = 100
-                            console.log(imageCapture.videoElement.videoWidth, imageCapture.videoElement.videoHeight)
-                            ctx.drawImage(imageCapture.videoElement, 0, 0, 100, 100);
-                            let imageData = ctx.getImageData(0, 0, 100, 100);
-                            let code = jsQR(imageData.data, 100, 100)
+                            canvas.width = 500
+                            canvas.height = 500
+                            ctx.drawImage(imageCapture.videoElement, 0, 0);
+                            let imageData = ctx.getImageData(0, 0, 500, 500);
+                            let code = jsQR(imageData.data, 500, 500)
                             if(!code) setTimeout(search, 10)
                             else {
                                 alert(code.data)
                             }
-                        
                         }
                         search()
                     })
