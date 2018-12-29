@@ -54,6 +54,7 @@ io.on('connection', function(socket){
 
   socket.on('fetch-models', (payload, respond) => {
    each(Model.all, (name,  model) => {
+     console.log(name, model)
       getMethods(model).forEach( method => {
         socket.on(`${name}-${method}`, async ( payload, respond ) => {
             let subscriptionID = counter++;
