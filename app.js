@@ -46,17 +46,27 @@ const server = greenlock.create({
 
 const io = require('socket.io')(server);
 
+const models = new Object
+const normalizedPath = require("path").join(__dirname, "models");
+require("fs").readdirSync(normalizedPath).forEach(function(file) {
+  let [name] = file.split('.')
+  let Model = require("./models/" + file);
+  let methods = models[name] = getMethods(Model)
+  let model = new Model
+  let subscriptionID = 0
+  methods.forEach( method => {
+    socket.on(method, async ( payload, respond ) => {
+        respond( subscriptionID++ )
+        model[method](...payload)
+          .then( result => socket.emit(subscriptionID, result))
+    })
+  })
+});
+
 io.on('connection', function(socket){
 
   socket.on('initialize', (payload, respond) => {
-    const controllers = new Object
-    const normalizedPath = require("path").join(__dirname, "controllers");
-    require("fs").readdirSync(normalizedPath).forEach(function(file) {
-      let [name] = file.split('.')
-      let Controller = require("./controllers/" + file);
-      controllers[name] = getMethods(Controller)
-    });
-    respond(controllers)
+    respond({ models })
   })
 
 })
