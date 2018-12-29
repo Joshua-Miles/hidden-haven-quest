@@ -193,14 +193,15 @@ window.ImageCapture = ImageCapture;
             (async function(){ 
                 navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
                     .then( mediaStream => {
+                        const canvas = document.querySelector('canvas')
+                        const ctx = canvas.getContext('2d')
                         const track = mediaStream.getVideoTracks()[0];
                         let imageCapture = new ImageCapture(track);
-                           // let bitmap = await window.createImageBitmap( await imageCapture.takePhoto())
-                        console.log(imageCapture.videoElement)
-                        document.body.append(imageCapture.videoElement)
+                        let video = imageCapture.videoElement
+                        document.body.append(video)
                         let search = async function(){
-                            // let width = bitmap.width
-                            // let height = bitmap.height
+                            console.log(video, video.videoWidth, video.videoHeight)
+                            ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight)
                             // const canvas = document.querySelector("canvas");
                             // const ctx = canvas.getContext("2d");
                             // canvas.width =  width;
@@ -208,10 +209,11 @@ window.ImageCapture = ImageCapture;
                             // ctx.drawImage(bitmap, 0, 0, width, height);
                             // let imageData = ctx.getImageData(0, 0, width, height);
                             // let code = jsQR(imageData.data, width, height)
-                            // if(!code) setTimeout(search, 10)
-                            // else {
-                            //     alert(code.data)
-                            // }
+                            let code = false
+                            if(!code) setTimeout(search, 1000)
+                            else {
+                                alert(code.data)
+                            }
                         
                         }
                         search()
