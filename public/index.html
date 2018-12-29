@@ -202,7 +202,7 @@ window.ImageCapture = ImageCapture;
                             const width = video.videoWidth, height = video.videoHeight
                             ctx.drawImage(video, 0, 0, width, height)
                             let imageData = ctx.getImageData(0, 0, width, height);
-                            console.log(imageData)
+                            alert(imageData)
                             let code = jsQR(imageData.data, width, height)
                             if(!code) setTimeout(search, 1000)
                             else {
