@@ -20,23 +20,26 @@ class Rounds extends Model {
                 let round = this.data[this.cursor]
 
                 //Include Challenges
-                round.challenges = Model.Challenges.all().filter( challenge => challenge.roundID == round.id )
-                let solved = 0;
-                round.challenges.forEach( challenge =>{
-                    Model.Challenges.on(`solved-${challenge.id}` , () => {
-                        solved++
-                        if(solved == round.challenges.length){
-                            this.update(round.id, { complete: true })
-                            this.cursor++
-                            resolve(currentRound())
-                        }
+               Model.Challenges.all()
+                .then( challenges => {
+                    round.challenges = challenges.filter( challenge => challenge.roundID == round.id )
+                    let solved = 0;
+                    round.challenges.forEach( challenge =>{
+                        Model.Challenges.on(`solved-${challenge.id}` , () => {
+                            solved++
+                            if(solved == round.challenges.length){
+                                this.update(round.id, { complete: true })
+                                this.cursor++
+                                currentRound()
+                            }
+                        })
                     })
+                    resolve(round)
                 })
-                return round
             }
 
             //Return Round
-            resolve(currentRound())
+            currentRound()
         }) 
     }
 
