@@ -14,7 +14,7 @@
                     img.addEventListener('load', function() {
                         resolve(this);
                     });
-                    alert('seven')
+                    alert('seven', window.URL)
                     img.src = window.URL.createObjectURL(blob);
                     alert('eight')
                 });
