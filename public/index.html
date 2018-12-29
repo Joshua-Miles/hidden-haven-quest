@@ -13,6 +13,7 @@
                         let search = async function(){
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
+                            alert(imageCapture)
                             let bitmap = await imageCapture.grabFrame()
                             alert(bitmap)
                             let width = bitmap.width
