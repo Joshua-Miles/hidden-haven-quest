@@ -197,7 +197,7 @@ window.ImageCapture = ImageCapture;
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
                             let bitmap = await window.createImageBitmap( await imageCapture.takePhoto())
-                             
+                             console.log(imageCapture.videoElement)
                             let width = bitmap.width
                             let height = bitmap.height
                             const canvas = document.querySelector("canvas");
