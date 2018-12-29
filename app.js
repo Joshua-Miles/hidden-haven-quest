@@ -81,5 +81,5 @@ app.use('/*', (req, res) => {
   const fs = require('fs')
   let content = fs.readFileSync('./public/index.html')
   console.log(content.toString('utf8'))
-  res.send(content)
+  res.send(content.toString('utf8'))
 })
