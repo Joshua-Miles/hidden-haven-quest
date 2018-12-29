@@ -10,13 +10,11 @@
             (async function(){ 
                 alert('before')
                 try {
-                navigator.mediaDevices.getUserMedia({video: true })
+                navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
                     .then( mediaStream => {
-                        alert('this far')
                         let search = async function(){
-                        
-
                             const track = mediaStream.getVideoTracks()[0];
+                            alert(track)
                             let imageCapture = new ImageCapture(track);
                             let bitmap = await imageCapture.grabFrame()
                             let width = bitmap.width
