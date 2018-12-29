@@ -1,6 +1,7 @@
 const express = require('express');
 const greenlock = require('greenlock-express');
 const app = express()
+const Model = require('./Model')
 
 const { map, each } = require('./Mason')
 
@@ -49,19 +50,10 @@ const server = greenlock.create({
 
 const io = require('socket.io')(server);
 let counter = 0
-const models = new Object
-const normalizedPath = require("path").join(__dirname, "models");
-require("fs").readdirSync(normalizedPath).forEach(function(file) {
-  let [name] = file.split('.')
-  let Model = require("./models/" + file);
-  let model = new Model
-  models[name] = { methods: getMethods(Model), model }
-});
-
 io.on('connection', function(socket){
 
   socket.on('fetch-models', (payload, respond) => {
-   each(models, (name,  { methods, model }) => {
+   each(Model, (name,  { methods, model }) => {
       methods.forEach( method => {
         socket.on(`${name}-${method}`, async ( payload, respond ) => {
             let subscriptionID = counter++;
@@ -72,7 +64,7 @@ io.on('connection', function(socket){
         })
       })
     })
-    respond({ models: map(models, (key, { methods, model }) => methods )})
+    respond({ models: map(Model, getMethods )})
   })
 })
 

@@ -1,7 +1,5 @@
 const Model = require('../Model')
-let Challenges = require('./Challenges.js')
-console.log(Model)
-Challenges = new Challenges
+
 class Rounds extends Model {
 
 
@@ -17,7 +15,7 @@ class Rounds extends Model {
         let round = rounds.find( round => round.id == this.cursor)
 
         //Include Challenges
-        round.challenges = Challenges.all().filter( challenge => challenge.roundID == round.id )
+        round.challenges = this.Challenges.all().filter( challenge => challenge.roundID == round.id )
 
         //Return Round
         return round
