@@ -58,7 +58,7 @@ class Rounds extends Model {
                 client.messages.create({
                     to: '+17138854378', //user.number,
                     from: '+12819496383',
-                    body: `https://hidden-haven-quest.triframe.cloud/portal/${user.id}`
+                    body: `Hi ${user.name}, come play Hidden Haven Quest: https://hidden-haven-quest.triframe.cloud/portal/${user.id}`
                 });
             })
         } 
