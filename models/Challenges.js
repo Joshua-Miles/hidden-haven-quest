@@ -31,5 +31,12 @@ const challenges = [
         description: 'Find the best christmas movie ever...',
         [code]: 'aaaa',
         solved: false
+    },
+    {
+        id: 2,
+        roundID: 2,
+        description: 'Find the best christmas movie ever...',
+        [code]: 'bbbb',
+        solved: false
     }
 ]

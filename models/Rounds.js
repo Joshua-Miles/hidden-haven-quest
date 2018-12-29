@@ -48,5 +48,9 @@ const rounds = [
     {
         id: 1,
         name: 'Round 1'
+    },
+    {
+        id: 1,
+        name: 'Round 2'
     }
 ]
