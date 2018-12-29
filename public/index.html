@@ -190,7 +190,7 @@ HTMLCanvasElement.prototype.renderImage = function(blob){
 
 window.ImageCapture = ImageCapture;
             (async function(){ 
-                navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
+                navigator.mediaDevices.getUserMedia({video: true }) //{ facingMode: { exact: "environment" } }
                     .then( mediaStream => {
                         const canvas = document.createElement('canvas')
                         const ctx = canvas.getContext('2d')
