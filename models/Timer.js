@@ -1,4 +1,5 @@
 const Model = require('../Model')
+const { Stream } = require('../Mason')
 
 let deadline = false
 let timelimit = 1
@@ -6,11 +7,13 @@ let timelimit = 1
 class Timer extends Model {
 
     remaining(){
-        if(!deadline){
-            deadline = (new Date).getTime() + 1000 * 60 * timelimit
-        }
-        let now = (new Date).getTime()
-        return (deadline - now)
+        return new Stream( emit => {
+            if(!deadline) deadline = (new Date).getTime() + 1000 * 60 * timelimit
+            let now = (new Date).getTime()
+            setInterval( () => emit(deadline-now), 1000)
+            emit(deadline - now)
+        })
+       
     }
 
     
