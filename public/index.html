@@ -7,8 +7,9 @@
         <h1>Lets Go!!!</h1>
         <script src="jsQR.js"></script>
         <script>
-            alert('this?')
             (async function(){ 
+                alert('this?!')
+
                 navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
                     .then( mediaStream => {
                         alert('this far')
