@@ -5,8 +5,8 @@ const Model = require('./Model')
 
 const { map, each } = require('./Mason')
 
-function getMethods($class) {
-  var prototype = $class.prototype
+function getMethods(instance) {
+  var prototype = Object.getPrototypeOf(instance)
   var props = [];
 
   do {
