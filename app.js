@@ -7,13 +7,10 @@ function getMethods($class) {
   var props = [];
 
   do {
-    console.log(prototype)
-      props = props.concat(Object.getOwnPropertyNames(prototype));
-  } while (prototype = prototype.__proto__ && prototype != Object.prototype);
+    if(prototype != Object.prototype) props = props.concat(Object.getOwnPropertyNames(prototype));
+  } while (prototype = Object.getPrototypeOf(prototype));
 
-  return props.sort().filter(function(e, i, arr) { 
-     if (e!=arr[i+1] && typeof obj[e] == 'function') return true;
-  });
+  return props.filter( prop => prop != 'constructor');
 }
 
 const server = greenlock.create({
