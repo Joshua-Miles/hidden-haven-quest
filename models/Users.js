@@ -1,10 +1,6 @@
-class Controller {
-    inheritedMethodOne(){
-        return 'Hello World'
-    }
-}
+const Model = require('../Model')
 
-module.exports = class Users extends Controller {
+class Users extends Model {
 
     methodOne(){
 
@@ -15,3 +11,5 @@ module.exports = class Users extends Controller {
 
     }
 }
+
+module.exports = Users;
