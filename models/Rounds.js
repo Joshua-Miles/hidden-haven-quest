@@ -44,6 +44,7 @@ class Rounds extends Model {
     }
 
     beginGame(){
+        console.log('sending')
         var twilio = require('twilio');
 
         // Find your account sid and auth token in your Twilio account Console.

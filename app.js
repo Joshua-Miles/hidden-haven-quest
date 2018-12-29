@@ -80,6 +80,5 @@ app.use('/deploy', function(req, res){
 app.use('/*', (req, res) => {
   const fs = require('fs')
   let content = fs.readFileSync('./build/index.html')
-  console.log(content.toString('utf8'))
   res.send(content.toString('utf8'))
 })
