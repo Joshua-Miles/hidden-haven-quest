@@ -60,7 +60,7 @@ require("fs").readdirSync(normalizedPath).forEach(function(file) {
 
 io.on('connection', function(socket){
 
-  socket.on('initialize', (payload, respond) => {
+  socket.on('fetch-models', (payload, respond) => {
    each(models, (name,  { methods, model }) => {
       methods.forEach( method => {
         socket.on(`${name}-${method}`, async ( payload, respond ) => {
