@@ -191,14 +191,14 @@ HTMLCanvasElement.prototype.renderImage = function(blob){
 
 window.ImageCapture = ImageCapture;
             (async function(){ 
-                navigator.mediaDevices.getUserMedia({video: true })
+                navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
                     .then( mediaStream => {
-                        let search = async function(){
-                            const track = mediaStream.getVideoTracks()[0];
-                            let imageCapture = new ImageCapture(track);
+                        const track = mediaStream.getVideoTracks()[0];
+                        let imageCapture = new ImageCapture(track);
                            // let bitmap = await window.createImageBitmap( await imageCapture.takePhoto())
-                             console.log(imageCapture.videoElement)
-                            document.body.append(imageCapture.videoElement)
+                        console.log(imageCapture.videoElement)
+                        document.body.append(imageCapture.videoElement)
+                        let search = async function(){
                             // let width = bitmap.width
                             // let height = bitmap.height
                             // const canvas = document.querySelector("canvas");
@@ -208,7 +208,7 @@ window.ImageCapture = ImageCapture;
                             // ctx.drawImage(bitmap, 0, 0, width, height);
                             // let imageData = ctx.getImageData(0, 0, width, height);
                             // let code = jsQR(imageData.data, width, height)
-                           // if(!code) setTimeout(search, 10)
+                            // if(!code) setTimeout(search, 10)
                             // else {
                             //     alert(code.data)
                             // }
