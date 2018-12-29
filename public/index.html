@@ -10,12 +10,13 @@
             (async function(){ 
                 navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
                     .then( mediaStream => {
+                        alert('this far')
                         let search = async function(){
                         try {
+
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
                             let bitmap = await imageCapture.grabFrame()
-                            alert(bitmap)
                             let width = bitmap.width
                             let height = bitmap.height
                             const canvas = document.querySelector("canvas");
