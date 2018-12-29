@@ -9,11 +9,12 @@
         <script>
             (async function(){ 
                 alert('before')
+                try {
                 navigator.mediaDevices.getUserMedia({video: true })
                     .then( mediaStream => {
                         alert('this far')
                         let search = async function(){
-                        try {
+                        
 
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
@@ -31,15 +32,16 @@
                             else {
                                 alert(code.data)
                             }
-                        } catch(err){
-                            alert(err)
-                        }
+                        
                     }
                     search()
                 })
                 .catch( error => {
                     alert('in here?')
                 })
+            } catch(err){
+                            alert(err)
+                        }
                 alert('after')
             })()
         </script>
