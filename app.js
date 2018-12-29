@@ -48,7 +48,7 @@ const server = greenlock.create({
 
 
 const io = require('socket.io')(server);
-let subscriptionID = 0
+let counter = 0
 const models = new Object
 const normalizedPath = require("path").join(__dirname, "models");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
@@ -64,9 +64,10 @@ io.on('connection', function(socket){
    each(models, (name,  { methods, model }) => {
       methods.forEach( method => {
         socket.on(`${name}-${method}`, async ( payload, respond ) => {
-            respond( subscriptionID++ )
+            let subscriptionID = counter++;
+            respond( subscriptionID )
             let result = model[method](...payload)
-            if(result.then) result.then( result => socket.emit(subscriptionID, result))
+            if(result && result.then) result.then( result => socket.emit(subscriptionID, result))
             else setTimeout( () => socket.emit(subscriptionID, result), 10 )
         })
       })
