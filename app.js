@@ -13,6 +13,14 @@ function getMethods($class) {
   return props.filter( prop => prop != 'constructor');
 }
 
+function map(object = new Object, callback){
+  let returnValues = new Object;
+  for( const [index, element] of object.entries() ){
+      returnValues[index] = callback(index, element, object);
+  }
+  return returnValues; 
+}
+
 const server = greenlock.create({
     // Let's Encrypt v2 is ACME draft 11
   version: 'draft-11'
@@ -45,30 +53,30 @@ const server = greenlock.create({
 
 
 const io = require('socket.io')(server);
-
+let subscriptionID = 0
 const models = new Object
 const normalizedPath = require("path").join(__dirname, "models");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
   let [name] = file.split('.')
   let Model = require("./models/" + file);
-  let methods = models[name] = getMethods(Model)
   let model = new Model
-  let subscriptionID = 0
-  methods.forEach( method => {
-    socket.on(method, async ( payload, respond ) => {
-        respond( subscriptionID++ )
-        model[method](...payload)
-          .then( result => socket.emit(subscriptionID, result))
-    })
-  })
+  models[name] = { methods: getMethods(Model), model }
 });
 
 io.on('connection', function(socket){
 
   socket.on('initialize', (payload, respond) => {
-    respond({ models })
+    Object.values(models).forEach( ( {methods, model}) => {
+      methods.forEach( method => {
+        socket.on(method, async ( payload, respond ) => {
+            respond( subscriptionID++ )
+            model[method](...payload)
+              .then( result => socket.emit(subscriptionID, result))
+        })
+      })
+    })
+    respond({ models: map(models, (key, { methods, model }) => methods )})
   })
-
 })
 
 app.use(express.static('public'))
