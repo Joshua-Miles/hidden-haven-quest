@@ -50,7 +50,7 @@ const rounds = [
         name: 'Round 1'
     },
     {
-        id: 1,
+        id: 2,
         name: 'Round 2'
     }
 ]
