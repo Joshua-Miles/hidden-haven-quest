@@ -35,7 +35,7 @@ const users = [
 
 class Users extends Model {
 
-    index(){
+    all(){
         return users
     }
 
