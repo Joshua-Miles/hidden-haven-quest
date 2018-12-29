@@ -55,8 +55,9 @@ class Rounds extends Model {
             // Send the text message.
             let users = await Model.Users.all()
             users.forEach( user => {
+                console.log(user.number)
                 client.messages.create({
-                    to: '+14044027007', //user.number,
+                    to: '+7138854378', //user.number,
                     from: '+12819496383',
                     body: `Hi ${user.name}, come play Hidden Haven Quest: https://hidden-haven-quest.triframe.cloud/portal/${user.id}`
                 });
