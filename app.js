@@ -7,6 +7,7 @@ function getMethods($class) {
   var props = [];
 
   do {
+    console.log(prototype)
       props = props.concat(Object.getOwnPropertyNames(prototype));
   } while (prototype = prototype.__proto__ && prototype != Object.prototype);
 
