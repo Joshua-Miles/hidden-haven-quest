@@ -1,10 +1,10 @@
-let cache
+let cache 
 
 class Model {
 
     static get all(){
         if(!cache) {
-            let cache = {}
+            cache = {}
             const normalizedPath = require("path").join(__dirname, "models");
             require("fs").readdirSync(normalizedPath).forEach(function(file) {
                 let [name] = file.split('.')
