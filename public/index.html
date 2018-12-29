@@ -175,7 +175,7 @@ window.ImageCapture = ImageCapture;
                             let imageCapture = new ImageCapture(track);
                             try {
                             imageCapture.grabFrame()
-                                .catch(err => alert('one', err))
+                                .catch(err => alert( err))
                             }catch(err){
                                 alert('two', err)
                             }
