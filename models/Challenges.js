@@ -10,6 +10,7 @@ class Challenges extends Model {
 
 
     solve(challengeID, code){
+        console.log('in here')
         let challenge = this.find(challengeID)
         if(challenge.completed) return
         if(code === challenge[code]) {
