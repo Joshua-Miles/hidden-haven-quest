@@ -206,8 +206,8 @@ window.ImageCapture = ImageCapture;
                             ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight)
                             if(!video.videoWidth || !video.videoHeight) return setTimeout(search, 1000)
                             let imageData = ctx.getImageData(0, 0, video.videoWidth, video.videoHeight);
-                            // let code = jsQR(imageData.data, width, height)
-                            let code = false
+                            let code = jsQR(imageData.data, width, height)
+                            //let code = false
                             if(!code) setTimeout(search, 1000)
                             else {
                                 alert(code.data)
