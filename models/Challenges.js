@@ -11,8 +11,13 @@ class Challenges extends Model {
 
     solve(challengeID, code){
         let challenge = this.find(challengeID)
-        if(code === challenge[code]) return true
-        else return false
+        if(challenge.completed) return
+        if(code === challenge[code]) {
+            this.emit(`solved-${challengeID}`)
+            return true
+        } else {
+            return false
+        }
     }
 
 }

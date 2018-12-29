@@ -1,4 +1,5 @@
 const Model = require('../Model')
+const { Stream } = require('../Mason')
 
 class Rounds extends Model {
 
@@ -10,15 +11,33 @@ class Rounds extends Model {
     }
 
     current(){
-        
-        //Find Round
-        let round = rounds.find( round => round.id == this.cursor)
+        return new Stream( resolve => {
 
-        //Include Challenges
-        round.challenges = Model.Challenges.all().filter( challenge => challenge.roundID == round.id )
+            let currentRound = () => {
+                if(this.cursor >= this.data.length) return { complete: true }
 
-        //Return Round
-        return round
+                //Find Round
+                let round = this.data[this.cursor]
+
+                //Include Challenges
+                round.challenges = Model.Challenges.all().filter( challenge => challenge.roundID == round.id )
+                let solved = 0;
+                round.challenges.forEach( challenge =>{
+                    Model.Challenges.on(`solved-${challenge.id}` , () => {
+                        solved++
+                        if(solved == round.challenges.length){
+                            this.update(round.id, { complete: true })
+                            this.cursor++
+                            resolve(currentRound())
+                        }
+                    })
+                })
+                return round
+            }
+
+            //Return Round
+            resolve(currentRound())
+        }) 
     }
 
 }

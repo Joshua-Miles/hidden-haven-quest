@@ -1,7 +1,7 @@
 let cache 
 const { Stream, EventEmitter } = require('./Mason')
 
-class Model {
+class Model extends EventEmitter{
 
     constructor(){
         this.events = new EventEmitter
@@ -31,16 +31,13 @@ class Model {
     update(id, values){
         let document = this.find(id)
         Object.assign(document, values)
-        this.events.emit(`updated-${id}`, document)
+        this.emit(`updated-${id}`, document)
         return document
     }
     
     subscribe(id){
         return new Stream( resolve => {
-            this.events.on(`updated-${id}`, document => {
-                console.log('in here')
-                resolve(document)
-            })
+            this.on(`updated-${id}`, document => resolve(document))
             resolve(this.find(id))
         })
     }
