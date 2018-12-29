@@ -61,7 +61,7 @@ io.on('connection', function(socket){
             respond( subscriptionID )
             let result = model[method](...payload)
             if(result && result.then) result.then( result => socket.emit(subscriptionID, result))
-            else setTimeout( () => socket.emit(subscriptionID, result), 1 )
+            else setTimeout( () => socket.emit(subscriptionID, result), 100 )
         })
       })
     })
