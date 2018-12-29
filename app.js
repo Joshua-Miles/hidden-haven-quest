@@ -65,8 +65,9 @@ io.on('connection', function(socket){
       methods.forEach( method => {
         socket.on(`${name}-${method}`, async ( payload, respond ) => {
             respond( subscriptionID++ )
-            model[method](...payload)
-              .then( result => socket.emit(subscriptionID, result))
+            let result = model[method](...payload)
+            if(result.then) result.then( result => socket.emit(subscriptionID, result))
+            else setTimeout( () => socket.emit(subscriptionID, result), 10 )
         })
       })
     })
