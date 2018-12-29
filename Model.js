@@ -3,10 +3,6 @@ const { Stream, EventEmitter } = require('./Mason')
 
 class Model extends EventEmitter{
 
-    constructor(){
-        this.events = new EventEmitter
-    }
-
     static get all(){
         if(!cache) {
             cache = {}
