@@ -1,6 +1,11 @@
 let cache 
+const { Stream, EventEmitter } = require('./Mason')
 
 class Model {
+
+    constructor(){
+        this.events = new EventEmitter
+    }
 
     static get all(){
         if(!cache) {
@@ -23,8 +28,11 @@ class Model {
         return this.data.find( document => document.id == id)
     }
     
-    subscribe(){
-
+    subscribe(id){
+        return new Stream( resolve => {
+            this.events.on(`updated-${id}`, document => resolve(document))
+            resolve(this.find(id))
+        })
     }
 }
 

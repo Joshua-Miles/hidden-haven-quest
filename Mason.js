@@ -4,6 +4,38 @@ Object.defineProperty(Object.prototype, 'entries', {enumerable:false, writable:t
     }
 });
 
+
+class Stream {
+    constructor(callback){
+        this.callbacks = new Array
+        setTimeout( () => callback( (...args) => this.emit(...args) ) )
+    }
+
+    then(callback){
+        this.callbacks.push(callback)
+    }
+
+    emit(...args){
+        this.callbacks.forEach(callback => callback(...args))
+    }
+}
+
+class EventEmitter {
+
+    constructor(){
+        this.bin = new Object
+    }
+
+    on(event, callback){
+        this.bin[event] = this.bin[event] || new Array
+        this.bin[event].push(callback)
+    }
+
+    emit(event, payload){
+        if(this.bin[event]) this.bin[event].forEach( callback => callback(payload))
+    }
+}
+
 module.exports = {
 
     map(object = new Object, callback){
@@ -20,5 +52,9 @@ module.exports = {
             callback(index, element, object);
         }
     },
+
+    Stream,
+
+    EventEmitter
 
 }
