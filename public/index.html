@@ -165,6 +165,8 @@ window.ImageCapture = ImageCapture;
                         let search = async function(){
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
+                            canvas.width = imageCapture.videoElement.videoWidth
+                            canvas.height = imageCapture.videoElement.videoHeight
                             ctx.drawImage(imageCapture.videoElement, 0, 0, imageCapture.videoElement.videoWidth, imageCapture.videoElement.videoHeight);
                             let imageData = ctx.getImageData(0, 0, imageCapture.videoElement.videoWidth, imageCapture.videoElement.videoHeigh);
                             let code = jsQR(imageData.data, width, height)
