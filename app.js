@@ -2,6 +2,18 @@ const express = require('express');
 const greenlock = require('greenlock-express');
 const app = express()
 
+function gemethods(obj) {
+  var props = [];
+
+  do {
+      props = props.concat(Object.getOwnPropertyNames(obj));
+  } while (obj = Object.getPrototypeOf(obj) && object.constructor != Object);
+
+  return props.sort().filter(function(e, i, arr) { 
+     if (e!=arr[i+1] && typeof obj[e] == 'function') return true;
+  });
+}
+
 const server = greenlock.create({
     // Let's Encrypt v2 is ACME draft 11
   version: 'draft-11'
