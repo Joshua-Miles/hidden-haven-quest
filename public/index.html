@@ -8,7 +8,7 @@
         <script src="jsQR.js"></script>
         <script>
             (async function(){ 
-                navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: "environment" } } })
+                navigator.mediaDevices.getUserMedia({video: true })
                     .then( mediaStream => {
                         alert('this far')
                         let search = async function(){
