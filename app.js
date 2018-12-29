@@ -2,6 +2,8 @@ const express = require('express');
 const greenlock = require('greenlock-express');
 const app = express()
 
+const { map, each } = require('./Mason')
+
 function getMethods($class) {
   var prototype = $class.prototype
   var props = [];
@@ -13,14 +15,6 @@ function getMethods($class) {
   return props.filter( prop => prop != 'constructor');
 }
 
-function map(object = new Object, callback){
-  let returnValues = new Object;
-  for( let index in object ){
-      let element = object[index]
-      returnValues[index] = callback(index, element, object);
-  }
-  return returnValues; 
-}
 
 const server = greenlock.create({
     // Let's Encrypt v2 is ACME draft 11
@@ -67,9 +61,9 @@ require("fs").readdirSync(normalizedPath).forEach(function(file) {
 io.on('connection', function(socket){
 
   socket.on('initialize', (payload, respond) => {
-    Object.values(models).forEach( ( {methods, model}) => {
+   each(models, (name,  { methods, model }) => {
       methods.forEach( method => {
-        socket.on(method, async ( payload, respond ) => {
+        socket.on(`${name}-${method}`, async ( payload, respond ) => {
             respond( subscriptionID++ )
             model[method](...payload)
               .then( result => socket.emit(subscriptionID, result))
