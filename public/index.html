@@ -158,22 +158,21 @@ window.ImageCapture = ImageCapture;
                         let search = async function(){
                             const track = mediaStream.getVideoTracks()[0];
                             let imageCapture = new ImageCapture(track);
-                            alert(imageCapture)
-                            let bitmap = await imageCapture.grabFrame()
-                            alert(bitmap)
-                            let width = bitmap.width
-                            let height = bitmap.height
-                            const canvas = document.querySelector("canvas");
-                            const ctx = canvas.getContext("2d");
-                            canvas.width =  width;
-                            canvas.height = height;
-                            ctx.drawImage(bitmap, 0, 0, width, height);
-                            let imageData = ctx.getImageData(0, 0, width, height);
-                            let code = jsQR(imageData.data, width, height)
-                            if(!code) setTimeout(search, 10)
-                            else {
-                                alert(code.data)
-                            }
+                            imageCapture.grabFrame()
+                                .catch(console.log)
+                            // let width = bitmap.width
+                            // let height = bitmap.height
+                            // const canvas = document.querySelector("canvas");
+                            // const ctx = canvas.getContext("2d");
+                            // canvas.width =  width;
+                            // canvas.height = height;
+                            // ctx.drawImage(bitmap, 0, 0, width, height);
+                            // let imageData = ctx.getImageData(0, 0, width, height);
+                            // let code = jsQR(imageData.data, width, height)
+                            // if(!code) setTimeout(search, 10)
+                            // else {
+                            //     alert(code.data)
+                            // }
                         
                         }
                         search()
