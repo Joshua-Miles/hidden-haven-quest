@@ -32,7 +32,7 @@ class EventEmitter {
     }
 
     emit(event, payload){
-        console.log(this.bin)
+        console.log(event,this.bin)
         if(this.bin[event]) this.bin[event].forEach( callback => callback(payload))
     }
 }
