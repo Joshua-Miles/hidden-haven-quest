@@ -7,6 +7,15 @@
         <h1>Lets Go!!!</h1>
         <script src="jsQR.js"></script>
         <script>
+            window.createImageBitmap = async function(blob) {
+        return new Promise((resolve,reject) => {
+            let img = document.createElement('img');
+            img.addEventListener('load', function() {
+                resolve(this);
+            });
+            img.src = URL.createObjectURL(blob);
+        });
+    }
             let ImageCapture = window.ImageCapture;
 
 if (typeof ImageCapture === 'undefined') {
