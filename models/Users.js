@@ -1,6 +1,6 @@
 class Controller {
     inheritedMethodOne(){
-        
+        return 'Hello World'
     }
 }
 
