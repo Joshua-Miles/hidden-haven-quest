@@ -2,7 +2,7 @@ const Model = require('../Model')
 const { Stream } = require('../Mason')
 
 let deadline = false
-let timelimit = 1
+let timelimit = 10
 
 class Timer extends Model {
 
