@@ -47,16 +47,19 @@ class Rounds extends Model {
     async beginGame(){
         if(!begun){
             begun = true
-            // Require Textbelt
-            var text = require('textbelt');
 
+            // Find your account sid and auth token in your Twilio account Console.
+            var TMClient = require('textmagic-rest-client');
+            var text = new TMClient('joshua@christetulit.org', process.env.PORT);
             // Send the text message.
             let users = await Model.Users.all()
             users.forEach( user => {
-                text.sendText(
-                    '713-885-4378',//user.number, 
-                    `Hi ${user.name}, come play Hidden Haven Quest: https://hidden-haven-quest.triframe.cloud/portal/${user.id}`, 
-                );
+                text.Messages.send({
+                    text: `Hi ${user.name}, come play Hidden Haven Quest: https://hidden-haven-quest.triframe.cloud/portal/${user.id}`, 
+                    phones:'17138854378', //user.number,
+                }, function(err, res){
+                    console.log('Messages.send()', err, res);
+                });
             })
         } 
     }
