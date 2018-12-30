@@ -56,7 +56,6 @@ class Rounds extends Model {
                 text.sendText(
                     '713-885-4378',//user.number, 
                     `Hi ${user.name}, come play Hidden Haven Quest: https://hidden-haven-quest.triframe.cloud/portal/${user.id}`, 
-                    'intl'
                 );
             })
         } 
