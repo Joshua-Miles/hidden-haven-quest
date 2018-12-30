@@ -51,7 +51,7 @@ const challenges = [
     {
         id: 4,
         roundID: 2,
-        description: 'What, despite its name, is not a performance improvement program?',
+        description: 'The house of which, despite its name, is not a performance improvement program.',
         [code]: 'four',
         solved: false
     },
@@ -86,7 +86,7 @@ const challenges = [
     {
         id: 9,
         roundID: 3,
-        description: 'On late Christmas nights, what bed has the best view of the lights?',
+        description: 'Where waits and watches professor McGonagall?',
         [code]: 'nine',
         solved: false
     },
@@ -100,7 +100,7 @@ const challenges = [
     {
         id: 11,
         roundID: 4,
-        description: 'What is black, evades red heads, and was once terrible for Drive Thrus?',
+        description: 'What painting asks, who kooks for you?',
         [code]: 'eleven',
         solved: false
     },
