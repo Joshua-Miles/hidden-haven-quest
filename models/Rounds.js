@@ -54,7 +54,7 @@ class Rounds extends Model {
             let users = await Model.Users.all()
             users.forEach( user => {
                 text.sendText(
-                    '7138854378',//user.number, 
+                    '713-885-4378',//user.number, 
                     `Hi ${user.name}, come play Hidden Haven Quest: https://hidden-haven-quest.triframe.cloud/portal/${user.id}`, 
                     'intl'
                 );
