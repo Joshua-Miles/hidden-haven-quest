@@ -11,8 +11,9 @@ class Challenges extends Model {
 
     solve(challengeID, guess){
         let challenge = this.find(challengeID)
-        if(challenge.completed) return
+        if(challenge.solved) return
         if(guess === challenge[code]) {
+            this.update(challengeID, { solved: true})
             this.emit(`solved-${challengeID}`)
             return true
         } else {
