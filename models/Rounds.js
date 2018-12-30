@@ -69,20 +69,9 @@ class Rounds extends Model {
 module.exports = Rounds;
 
 const rounds = [
-    {
-        id: 1,
-        name: 'Round 1'
-    },
+ 
     {
         id: 2,
-        name: 'Round 2'
-    },
-    {
-        id: 3,
-        name: 'Round 2'
-    },
-    {
-        id: 4,
         name: 'Round 2'
     }
 ]
