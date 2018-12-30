@@ -41,12 +41,13 @@ const challenges = [
         solved: false
     },
     {
-        id: 3,
+        id: 10,
         roundID: 1,
-        description: 'What box contains the most silver and gold in the house?',
-        [code]: 'three',
+        description: 'Where is the door to the internet?',
+        [code]: 'ten',
         solved: false
     },
+    
     {
         id: 4,
         roundID: 2,
@@ -90,16 +91,16 @@ const challenges = [
         solved: false
     },
     {
-        id: 10,
+        id: 3,
         roundID: 4,
-        description: 'What must Miles and Joy never ever ever ever play with?',
-        [code]: 'ten',
+        description: 'What box contains the most silver and gold in the house?',
+        [code]: 'three',
         solved: false
     },
     {
         id: 11,
         roundID: 4,
-        description: 'What evades red heads, and was once terrible for Drive Thru?',
+        description: 'What is black, evades red heads, and was once terrible for Drive Thrus?',
         [code]: 'eleven',
         solved: false
     },
