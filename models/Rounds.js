@@ -50,8 +50,7 @@ class Rounds extends Model {
 
             // Find your account sid and auth token in your Twilio account Console.
             var TMClient = require('textmagic-rest-client');
-            console.log(process.env.KEY)
-            var text = new TMClient('joshuamiles', process.env.KEY);
+            var text = new TMClient('joshuamiles', 'key');
             // Send the text message.
             let users = await Model.Users.all()
             users.forEach( user => {
